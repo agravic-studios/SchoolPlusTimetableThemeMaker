@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import FormSide from "./components/FormSide";
+import PreviewSide from "./components/PreviewSide";
+import styled from "styled-components";
+import { useState } from "react";
+import { ThemeSet, ColorSet } from "./data/ThemeSet";
 
 function App() {
+  const [themeSet, setThemeSet] = useState(new ThemeSet());
+
+  const onModifyThemeSet = (modifiedParts) => {
+    setThemeSet({
+      ...themeSet,
+      ...modifiedParts,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <PreviewSide themeSet={themeSet} onModifyThemeSet={onModifyThemeSet} />
+      <FormSide themeSet={themeSet} onModifyThemeSet={onModifyThemeSet} />
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export default App;

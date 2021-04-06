@@ -1,0 +1,14 @@
+.input-container {
+  padding: 16px;
+}
+.input {
+  margin-bottom: 8px;
+}
+
+form > div {
+  margin-bottom: 8px;
+}
+
+form > div label {
+  margin-inline-end: 8px;
+}

@@ -1,0 +1,11 @@
+form > div {
+  margin-bottom: 8px;
+}
+
+form div.color-form .inner-form {
+  display: inline;
+}
+
+form div.color-form .inner-form > input {
+  margin-inline-end: 8px;
+}
