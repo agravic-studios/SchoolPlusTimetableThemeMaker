@@ -133,7 +133,14 @@ function getFormDiv(item, themeSet, onModifyThemeSet) {
     return (
       <div>
         <label>{item.label}</label>
-        <input type={item.type} />
+        <input
+          type={item.type}
+          onChange={(e) => {
+            var set = {};
+            set[item.key] = e.target.value;
+            onModifyThemeSet(set);
+          }}
+        />
       </div>
     );
   }
