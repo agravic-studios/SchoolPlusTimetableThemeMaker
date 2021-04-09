@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/schoolplustimetablethememaker/static/css/main.3a9db5b2.chunk.css",
+    "main.js": "/schoolplustimetablethememaker/static/js/main.56c282b1.chunk.js",
+    "main.js.map": "/schoolplustimetablethememaker/static/js/main.56c282b1.chunk.js.map",
+    "runtime-main.js": "/schoolplustimetablethememaker/static/js/runtime-main.647b0ed7.js",
+    "runtime-main.js.map": "/schoolplustimetablethememaker/static/js/runtime-main.647b0ed7.js.map",
+    "static/js/2.caf86984.chunk.js": "/schoolplustimetablethememaker/static/js/2.caf86984.chunk.js",
+    "static/js/2.caf86984.chunk.js.map": "/schoolplustimetablethememaker/static/js/2.caf86984.chunk.js.map",
+    "static/js/3.7b77effc.chunk.js": "/schoolplustimetablethememaker/static/js/3.7b77effc.chunk.js",
+    "static/js/3.7b77effc.chunk.js.map": "/schoolplustimetablethememaker/static/js/3.7b77effc.chunk.js.map",
+    "index.html": "/schoolplustimetablethememaker/index.html",
+    "static/css/main.3a9db5b2.chunk.css.map": "/schoolplustimetablethememaker/static/css/main.3a9db5b2.chunk.css.map",
+    "static/js/2.caf86984.chunk.js.LICENSE.txt": "/schoolplustimetablethememaker/static/js/2.caf86984.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/schoolplustimetablethememaker/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.647b0ed7.js",
+    "static/js/2.caf86984.chunk.js",
+    "static/css/main.3a9db5b2.chunk.css",
+    "static/js/main.56c282b1.chunk.js"
+  ]
+}
