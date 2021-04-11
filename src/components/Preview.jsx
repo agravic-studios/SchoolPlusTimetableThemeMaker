@@ -122,14 +122,38 @@ function PreviewTable({ themeSet, colorThemeType }) {
 
   return (
     <table style={style.table}>
-      <th></th>
+      <th
+        style={{
+          backgroundColor: themeSet.backgroundColors.headerSurface,
+        }}
+      ></th>
       {daysOfWeek.map((value) => (
-        <th>{value}</th>
+        <th
+          style={{
+            backgroundColor:
+              value == "목"
+                ? themeSet.backgroundColors.headerHighlight
+                : themeSet.backgroundColors.headerSurface,
+            color:
+              value == "목"
+                ? themeSet.textColors.headerHighlight
+                : themeSet.textColors.headerSurface,
+          }}
+        >
+          {value}
+        </th>
       ))}
 
       {cellData.map((row, rowIndex) => (
         <tr>
-          <td>{rowIndex + 1}</td>
+          <td
+            style={{
+              backgroundColor: themeSet.backgroundColors.indexSurface,
+              color: themeSet.textColors.indexSurface,
+            }}
+          >
+            {rowIndex + 1}
+          </td>
           {row.map((data, colIndex) => (
             <Cell
               value={data}

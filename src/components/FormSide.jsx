@@ -14,15 +14,20 @@ const formKeys = {
 
   lightDivider: "lightDivider",
 
-  colorSurface: "colorSurface",
-  colorPrimary: "colorPrimary",
-  colorSecondary: "colorSecondary",
+  colorSurface: "surface",
+  colorPrimary: "primary",
+  colorSecondary: "secondary",
+
+  colorHeaderSurface: "headerSurface",
+  colorHeaderHighlight: "headerHighlight",
+  colorIndexSurface: "indexSurface",
+  colorIndexHighlight: "indexHighlight",
 
   themeTypes: {
-    solid: "solid",
-    twotone: "twotone",
-    checked: "checked",
-    subject: "subject",
+    solid: "Solid",
+    twotone: "TwoTone",
+    checked: "Checked",
+    subject: "Subject",
   },
 };
 
@@ -40,16 +45,20 @@ const forms = [
   {
     section: "Theme Types",
     items: [
-      { label: "Solid", type: "toggle", key: formKeys.themeTypes.solid },
-      { label: "Two Tone", type: "toggle", key: formKeys.themeTypes.twotone },
+      { label: "Solid", type: "theme-types", key: formKeys.themeTypes.solid },
+      {
+        label: "Two Tone",
+        type: "theme-types",
+        key: formKeys.themeTypes.twotone,
+      },
       {
         label: "Checked Pattern",
-        type: "toggle",
+        type: "theme-types",
         key: formKeys.themeTypes.checked,
       },
       {
         label: "Various / Subjects",
-        type: "toggle",
+        type: "theme-types",
         key: formKeys.themeTypes.subject,
       },
     ],
@@ -66,6 +75,27 @@ const forms = [
       { label: "Primary", type: "basic-color", key: formKeys.colorPrimary },
       { label: "Secondary", type: "basic-color", key: formKeys.colorSecondary },
       { label: "Surface", type: "basic-color", key: formKeys.colorSurface },
+
+      {
+        label: "Header",
+        type: "basic-color",
+        key: formKeys.colorHeaderSurface,
+      },
+      {
+        label: "Header*",
+        type: "basic-color",
+        key: formKeys.colorHeaderHighlight,
+      },
+      {
+        label: "Index",
+        type: "basic-color",
+        key: formKeys.colorIndexSurface,
+      },
+      {
+        label: "Index*",
+        type: "basic-color",
+        key: formKeys.colorIndexHighlight,
+      },
     ],
   },
 ];
@@ -77,20 +107,6 @@ const forms = [
   { backgroundColor: "", textColor: "" },
 ];*/
 
-function getColorSetKey(key) {
-  switch (key) {
-    case formKeys.colorPrimary:
-      return "primary";
-      break;
-    case formKeys.colorSecondary:
-      return "secondary";
-      break;
-    case formKeys.colorSurface:
-      return "surface";
-      break;
-  }
-}
-
 function getFormDiv(item, themeSet, onModifyThemeSet) {
   if (item.type == "basic-color") {
     return (
@@ -98,14 +114,14 @@ function getFormDiv(item, themeSet, onModifyThemeSet) {
         label={item.label}
         onChangeBackgroundColor={(value) => {
           var bgColors = { ...themeSet.backgroundColors };
-          bgColors[getColorSetKey(item.key)] = value;
+          bgColors[item.key] = value;
           onModifyThemeSet({
             backgroundColors: bgColors,
           });
         }}
         onChangeTextColor={(value) => {
           var txColors = { ...themeSet.textColors };
-          txColors[getColorSetKey(item.key)] = value;
+          txColors[item.key] = value;
           onModifyThemeSet({
             textColors: txColors,
           });
@@ -122,8 +138,31 @@ function getFormDiv(item, themeSet, onModifyThemeSet) {
           value="toggle"
           onChange={(e) => {
             const checked = e.target.checked;
+            var modifier = {};
+            modifier[item.key] = checked;
+            onModifyThemeSet(modifier);
+          }}
+        />
+      </div>
+    );
+  } else if (item.type == "theme-types") {
+    return (
+      <div>
+        <label>{item.label}</label>
+        <input
+          type="checkbox"
+          name={item.key}
+          value="toggle"
+          onChange={(e) => {
+            const checked = e.target.checked;
+            var types = new Set(themeSet.colorThemeTypes);
+            if (checked) {
+              types.add(item.key);
+            } else {
+              types.delete(item.key);
+            }
             onModifyThemeSet({
-              lightDivider: checked,
+              colorThemeTypes: [...types],
             });
           }}
         />
@@ -213,7 +252,7 @@ function FormSide({ themeSet, onModifyThemeSet }) {
               tmp[index] = value;
               setSeriesTextColors(tmp);
             }}
-            deletable
+            deletable={index == seriesBackgroundColors.length - 1}
             onDelete={() => {
               setSeriesBackgroundColors(
                 seriesBackgroundColors.filter(

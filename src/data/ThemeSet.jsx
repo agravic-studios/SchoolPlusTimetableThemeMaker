@@ -2,6 +2,10 @@ export class ColorSet {
   primary: String = "";
   secondary: String = "";
   surface: String = "";
+  headerSurface: String = "";
+  headerHighlight: String = "";
+  indexSurface: String = "";
+  indexHighlight: String = "";
   series = [];
 }
 export class ThemeSet {
